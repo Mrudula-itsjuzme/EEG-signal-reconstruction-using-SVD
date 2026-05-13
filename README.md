@@ -1,53 +1,108 @@
 # EEG Signal Noise Reduction Using SVD
 
-A Linear Algebra Approach to Biomedical Signal Enhancement.
+A biomedical signal-processing project that uses Singular Value Decomposition, or SVD, to reduce EOG eye-movement artifacts from EEG recordings.
 
-## Team Members
+The project recreates and validates ideas from a classical EEG denoising paper using a linear-algebra-based subspace separation approach.
+
+---
+
+## Project context
 
 **Team 9**
-* Manohar P
-* Mrudula
-* Sainath
-* Pushpak
 
-## Base Reference Paper
+- Manohar P
+- Mrudula
+- Sainath
+- Pushpak
 
-This project recreates and validates the results of the research paper:
-* **Title:** SVD based technique for noise reduction in electroencephalographic signals
-* **Authors:** P.K. Sadasivan, D. Narayana Dutt (Department of ECE, Indian Institute of Science, Bangalore)
-* **Journal:** Signal Processing 55 (1996) 179-189 (Elsevier)
-* **DOI:** [https://doi.org/10.1016/S0165-1684(96)00129-6](https://doi.org/10.1016/S0165-1684(96)00129-6)
+---
 
-## Project Outline
+## Reference paper
 
-The objective is to extract weak Electroencephalogram (EEG) signals hidden within strong Electrooculogram (EOG/eye movement) artifacts using Singular Value Decomposition (SVD).
+**Title:** SVD based technique for noise reduction in electroencephalographic signals  
+**Authors:** P. K. Sadasivan and D. Narayana Dutt  
+**Journal:** Signal Processing, Elsevier, 1996  
+**DOI:** https://doi.org/10.1016/S0165-1684(96)00129-6
 
-**Key Methodology:**
-1. **Data Construction:** Modeling the observed signal as a linear combination of source signals (artifacts) and noise (pure EEG).
-2. **SVD Decomposition:** Decomposing the data matrix into singular vectors and singular values.
-3. **Subspace Separation:** Separating the Signal Subspace (high-energy EOG artifacts) from the Noise Subspace (containing the desired EEG).
-4. **Reconstruction:** Reconstructing the clean EEG by projecting the data onto the noise subspace.
+---
 
-## Implementation Updates
+## Problem statement
 
-The core algorithm has been implemented in MATLAB.
-* **Simulation Environment:** Created simulation generating Alpha (10Hz) and Beta (20Hz) rhythms mixed with EOG artifacts (0-4Hz).
-* **High-Fidelity Reproduction:** Successfully recreated the "EOG-Contaminated EEG" with an input SNR of -9.5 dB.
-* **Results:** Achieved an Output SNR of approximately 13.83 dB to 19.16 dB, aligning with the reported results in the reference paper.
+EEG signals are weak and easily contaminated by eye-movement artifacts. These EOG artifacts can dominate the recorded signal and make brain-signal interpretation unreliable.
 
-## Challenges Resolved
+This project uses SVD to separate high-energy artifact components from the weaker EEG signal subspace.
 
-* **Sign Indeterminacy:** Implemented a correlation check to handle singular vectors with inverted signs.
-* **Rank Estimation:** Set the artifact subspace rank based on energy dominance.
-* **Noise Scaling:** Tuned sensor-to-signal power ratios for accurate SNR matching.
+---
 
-## Future Plans
+## Method overview
 
-* **Direct Data Acquisition:** Recording EEG and EOG data using laboratory equipment.
-* **Public Dataset Validation:** Testing the implementation against the EEG Eye Artifact Dataset.
+```text
+Simulated / Recorded EEG + EOG Mixture
+              ↓
+Data Matrix Construction
+              ↓
+SVD Decomposition
+              ↓
+Artifact Subspace Identification
+              ↓
+Noise / EEG Subspace Reconstruction
+              ↓
+Cleaned EEG + SNR Evaluation
+```
 
-## Evaluation Details
+---
 
-* **Platform:** macOS
-* **Hardware:** CPU
-* **Environment:** MATLAB
+## Key methodology
+
+- model observed EEG as a mixture of true EEG, EOG artifacts, and noise
+- apply SVD to decompose the observation matrix
+- identify dominant singular components linked to high-energy artifacts
+- reconstruct the desired EEG from the remaining subspace
+- evaluate improvement using input and output SNR
+
+---
+
+## Implementation highlights
+
+- MATLAB-based implementation
+- simulated alpha rhythm at 10 Hz
+- simulated beta rhythm at 20 Hz
+- low-frequency EOG artifact modeling between 0–4 Hz
+- recreated contaminated EEG with input SNR around -9.5 dB
+- reported output SNR improvement around 13.83 dB to 19.16 dB
+
+---
+
+## Challenges handled
+
+| Challenge | Solution |
+|---|---|
+| Sign indeterminacy | correlation check for inverted singular vectors |
+| Rank estimation | artifact-subspace rank selected using energy dominance |
+| Noise scaling | tuned sensor-to-signal power ratios to match expected SNR |
+
+---
+
+## Tech stack
+
+- MATLAB
+- Linear algebra
+- Singular Value Decomposition
+- Biomedical signal processing
+- EEG/EOG artifact reduction
+
+---
+
+## Future improvements
+
+- validate on public EEG eye-artifact datasets
+- test with directly acquired EEG/EOG recordings
+- compare SVD with ICA, wavelet denoising, and deep-learning denoisers
+- add plots showing before/after reconstruction quality
+- port the implementation to Python for wider reproducibility
+
+---
+
+## Author
+
+Maintained by [Pedamallu Sai Mrudula](https://github.com/Mrudula-itsjuzme) as part of an applied AI, linear algebra, and biomedical signal-processing portfolio.
