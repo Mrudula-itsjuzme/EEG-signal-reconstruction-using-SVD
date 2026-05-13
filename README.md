@@ -6,6 +6,19 @@ The project recreates and validates ideas from a classical EEG denoising paper u
 
 ---
 
+## Project links and evidence
+
+| Item | Link / Note |
+|---|---|
+| Repository | https://github.com/Mrudula-itsjuzme/EEG-signal-reconstruction-using-SVD |
+| Paper / reference | https://doi.org/10.1016/S0165-1684(96)00129-6 |
+| Demo video | Not uploaded yet |
+| Deployment | Not applicable; MATLAB signal-processing implementation |
+| Dataset note | Uses simulated EEG/EOG mixtures; future validation planned on public EEG eye-artifact datasets |
+| Result screenshots / plots | Add before/after reconstruction plots to the repo once finalized; current SNR results are documented below |
+
+---
+
 ## Project context
 
 **Team 9**
